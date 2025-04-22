@@ -64,8 +64,7 @@ public final class sesion extends conexion {
         this.factura_seq = factura_seq;
     }
 
-    
-    
+       
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -191,7 +190,7 @@ public final class sesion extends conexion {
         ResultSet rs = null;
         
         try {
-            String sql = "select * from sys_config";
+            String sql = "select * from systemconfig";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             if (rs.next() == true) {
@@ -217,7 +216,7 @@ public final class sesion extends conexion {
         Connection con = getAbrirConexion();
         ResultSet rs = null;
         String sql = "";
-        sql = "select * from sys_usuario where usuario =? and password = ? ";
+        sql = "select * from usuario where usuario =? and password = ? ";
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, pUsuario);
@@ -227,9 +226,9 @@ public final class sesion extends conexion {
             if(rs.next()==true){
                 usuario = rs.getString("usuario");
                 nombreUsuario = rs.getString("nombre");
-                idUsuario = rs.getInt("id");
+                idUsuario = rs.getInt("id_usuario");
                 nivel = rs.getString("nivel");
-                usuarioPrecio = rs.getString("limite_precio");
+                usuarioPrecio = rs.getString("vender_hasta");
                 usuarioSinStock = rs.getString("stock_insuficiente");
                 con.close();
                 return true;

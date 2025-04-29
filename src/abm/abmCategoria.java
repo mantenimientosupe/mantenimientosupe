@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.modeloCategoria;
@@ -17,6 +18,34 @@ public class abmCategoria extends config.conexion{
     public abmCategoria (sesion pSesion){
         oSesion = pSesion;
     }
+    public DefaultComboBoxModel cargarCombo(){
+    
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(); 
+        
+        PreparedStatement preparaConsulta = null;
+        ResultSet datos = null;
+        Connection conex = getAbrirConexion();
+        String sql = "";
+        
+        try {
+            sql = "select * from categoria";
+            preparaConsulta = conex.prepareStatement(sql);
+            datos = preparaConsulta.executeQuery();
+            
+            while(datos.next() == true){
+                String valor = datos.getInt("id_categoria")+"-"+ datos.getString("descripcion");
+                modelo.addElement(valor);
+            }     
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        }
+                        
+        return modelo;
+    
+    }
+    
+    
     public DefaultTableModel cargarTabla(String condicion){
         //ahora cargar el objeto encabezado a default
         

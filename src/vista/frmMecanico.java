@@ -74,6 +74,8 @@ public class frmMecanico extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
+        setTitle("REGISTRO DE MECANICOS");
+
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N

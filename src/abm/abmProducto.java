@@ -22,6 +22,8 @@ public class abmProducto extends config.conexion{
     public abmProducto (sesion pSesion){
         oSesion = pSesion;
     }
+    
+    
     public DefaultTableModel cargarTabla(String condicion){
         //ahora cargar el objeto encabezado a default
         DefaultTableModel modelo = new DefaultTableModel();
@@ -82,31 +84,6 @@ public class abmProducto extends config.conexion{
         
         }
     
-   /* public DefaultComboBoxModel CargarCategoria(){
-        DefaultComboBoxModel categoria = new DefaultComboBoxModel();
-        
-        PreparedStatement preparaConsulta = null;
-        ResultSet datos = null;
-        Connection conex = getAbrirConexion();
-        String sql = "";
-        
-        try {
-            sql = "select id_producto, descripcion from producto";
-            preparaConsulta = conex.prepareStatement(sql);
-            datos = preparaConsulta.executeQuery();
-           // String[] filas = new String[2];
-            while(datos.next() == true){
-                String codigo = String.valueOf(datos.getInt("id_producto"));
-                String descripcion = datos.getString("descripcion");
-                categoria.addElement(codigo+descripcion);            
-             //   cat.addRow(filas);
-            }  
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e, oSesion.getTituloMensaje(), 1);
-        }
-        return categoria;
-    }*/
     
     public boolean cargarRegistro(modeloProducto pModelo){
         PreparedStatement preparaConsulta = null;
@@ -174,7 +151,7 @@ public class abmProducto extends config.conexion{
         try {
             sql = "insert into producto(barra, descripcion, iva, costo, costomedio, precio_unitario, precio_mayorista, "
                     + "stock, stock_minimo, estado, id_categoria_fk, id_marca_fk, id_proveedor_fk) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            preparaConsulta = conex.prepareStatement(sql);
+                preparaConsulta = conex.prepareStatement(sql);
                 preparaConsulta.setString(1,modelo.getBarra());
                 preparaConsulta.setString(2,modelo.getDescripcion());
                 preparaConsulta.setInt(3,modelo.getIva());

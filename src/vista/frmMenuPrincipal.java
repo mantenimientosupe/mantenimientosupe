@@ -1,7 +1,10 @@
 
 package vista;
 
+import abm.abmMarca;
 import config.sesion;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 
 public class frmMenuPrincipal extends javax.swing.JFrame {
 
@@ -13,6 +16,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     frmMarca oFrmMarca;
     frmMecanico oFrmMecanico;
     frmProducto oFrmProducto;
+    frmVehiculos oFrmVehiculos;
+    abmMarca oAbmMarca;
     
     public frmMenuPrincipal() {
         initComponents();
@@ -62,12 +67,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         sm_rCategoria = new javax.swing.JMenuItem();
         sm_rMarcas = new javax.swing.JMenuItem();
         sm_rMecanico = new javax.swing.JMenuItem();
+        sm_rVehiculo = new javax.swing.JMenuItem();
         mOperaciones = new javax.swing.JMenu();
         sm_oCompra = new javax.swing.JMenuItem();
         sm_oVenta = new javax.swing.JMenuItem();
         sm_oCaja = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        contenedor.setBackground(new java.awt.Color(153, 204, 255));
+        contenedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
@@ -77,7 +87,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 425, Short.MAX_VALUE)
+            .addGap(0, 424, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 102));
@@ -101,7 +111,9 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         );
 
         mRegistro.setText("Registro");
+        mRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        sm_rProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_rProducto.setText("Producto");
         sm_rProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +122,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rProducto);
 
+        sm_rCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_rCliente.setText("Cliente");
         sm_rCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +131,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rCliente);
 
+        ms_rProveedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ms_rProveedor.setText("Proveedor");
         ms_rProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +140,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(ms_rProveedor);
 
+        sm_rCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_rCategoria.setText("Categoria");
         sm_rCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +149,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rCategoria);
 
+        sm_rMarcas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_rMarcas.setText("Marcas");
         sm_rMarcas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +158,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rMarcas);
 
+        sm_rMecanico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_rMecanico.setText("Mecanico");
         sm_rMecanico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,13 +167,24 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rMecanico);
 
+        sm_rVehiculo.setText("Vehiculos");
+        sm_rVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sm_rVehiculoActionPerformed(evt);
+            }
+        });
+        mRegistro.add(sm_rVehiculo);
+
         jMenuBar1.add(mRegistro);
 
         mOperaciones.setText("Operaciones");
+        mOperaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        sm_oCompra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_oCompra.setText("Compra");
         mOperaciones.add(sm_oCompra);
 
+        sm_oVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_oVenta.setText("Venta");
         sm_oVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +193,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mOperaciones.add(sm_oVenta);
 
+        sm_oCaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_oCaja.setText("Caja");
         mOperaciones.add(sm_oCaja);
 
@@ -231,7 +260,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void sm_rMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rMarcasActionPerformed
           if(oFrmMarca == null || oFrmMarca.isVisible() == false){
             oFrmMarca = new frmMarca(oSesion);
-            contenedor.add(oFrmMarca);
+            contenedor.add(oFrmMarca); 
             oFrmMarca.setVisible(true);
             oFrmMarca.toFront();
         } 
@@ -254,6 +283,17 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             oFrmProducto.toFront();
        }
     }//GEN-LAST:event_sm_rProductoActionPerformed
+
+    private void sm_rVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rVehiculoActionPerformed
+         if(oFrmVehiculos == null || oFrmVehiculos.isVisible() == false){
+            oFrmVehiculos = new frmVehiculos(oSesion);
+            contenedor.add(oFrmVehiculos);
+            oFrmVehiculos.setVisible(true);
+            oFrmVehiculos.toFront();
+       }
+        
+        
+    }//GEN-LAST:event_sm_rVehiculoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,6 +332,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane contenedor;
@@ -308,6 +349,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem sm_rMarcas;
     private javax.swing.JMenuItem sm_rMecanico;
     private javax.swing.JMenuItem sm_rProducto;
+    private javax.swing.JMenuItem sm_rVehiculo;
     private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

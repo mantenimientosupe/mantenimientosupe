@@ -68,6 +68,10 @@ public class frmCategoria extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
+        setTitle("REGISTRO DE CATEGORIAS");
+        setAlignmentX(10.0F);
+        setAlignmentY(10.0F);
+
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -438,7 +442,7 @@ public class frmCategoria extends javax.swing.JInternalFrame {
         contenedor.setSelectedIndex(1);
         txtCodigo.setText("0");
         txtNombre.setText("");
-        txtEstado.setText("");
+        txtEstado.setText("1");
         txtNombre.requestFocus();
     }//GEN-LAST:event_btnNuevoActionPerformed
 

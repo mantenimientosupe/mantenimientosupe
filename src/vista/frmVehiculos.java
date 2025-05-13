@@ -6,11 +6,12 @@ import abm.abmCliente;
 import abm.abmMarca;
 import abm.abmVehiculo;
 import config.sesion;
+import java.awt.Frame;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import modelo.modeloCliente;
 import modelo.modeloVehiculo;
-
 
 public class frmVehiculos extends javax.swing.JInternalFrame {
     sesion oSesion;
@@ -23,6 +24,9 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
     frmNuevaCategoria oFrmNuevaCategoria;
     frmMarca oFrmMarca;
     frmNuevaMarca oFrmNuevaMarca;
+    newClienteJD oNewClienteJD;
+    frmNewCategoriaJD1 oFrmNewCategoriaJD1;
+    frmNewMarcaJD11 oFrmNewMarcaJD11;
     frmVehiculos oFrmCliente;
     String operacion = "";
     frmClienteNuevo oFrmClienteNuevo;
@@ -43,7 +47,6 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
         cbxCategoria.setModel(oAbmCategoria.cargarCombo());
         cbxCliente.setModel(oAbmCliente.cargarCombo());
         cbxMarca.setModel(oAbmMarca.cargarCombo());
-        panelNuevo.setVisible(false);
        
         
                
@@ -99,8 +102,6 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        panelNuevo = new javax.swing.JPanel();
-        btnVolver = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -520,32 +521,6 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
 
         contenedor.addTab("Edicion de Registros", panelEdicion);
 
-        btnVolver.setText("Volver");
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout panelNuevoLayout = new javax.swing.GroupLayout(panelNuevo);
-        panelNuevo.setLayout(panelNuevoLayout);
-        panelNuevoLayout.setHorizontalGroup(
-            panelNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNuevoLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(582, Short.MAX_VALUE))
-        );
-        panelNuevoLayout.setVerticalGroup(
-            panelNuevoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNuevoLayout.createSequentialGroup()
-                .addContainerGap(432, Short.MAX_VALUE)
-                .addComponent(btnVolver)
-                .addContainerGap())
-        );
-
-        contenedor.addTab("Nuevo", panelNuevo);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -562,108 +537,6 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        operacion = "MODIFICAR";
-        contenedor.setSelectedIndex(1);
-        
-        String codigo = "";
-        codigo = grilla.getValueAt(grilla.getSelectedRow(), 0).toString();
-      
-        oModeloVehiculo = new modeloVehiculo();
-        oModeloVehiculo.setId(Integer.parseInt(codigo));
-        
-        boolean resultado = oAbmVehiculo.cargarRegistro(oModeloVehiculo);
-        if(resultado == true){
-            txtCodigo.setText(String.valueOf(oModeloVehiculo.getId()));
-            txtDescripcion.setText(oModeloVehiculo.getDescripcion());
-            txtModelo.setText(String.valueOf(oModeloVehiculo.getModelo()));
-            txtAño.setText(String.valueOf(oModeloVehiculo.getAño()));
-            int categoria = oModeloVehiculo.getCategoria_fk();
-            int marca = oModeloVehiculo.getMarca_fk(); 
-            int Cliente = oModeloVehiculo.getCliente_fk();
-           int c=0;
-            while(c < cbxCategoria.getItemCount()){
-                String item = cbxCategoria.getItemAt(c);
-                String[] partes = item.split("-");
-                int codCat = Integer.parseInt(partes[0].trim());
-                if(categoria == codCat ){
-                    cbxCategoria.setSelectedIndex(c);
-                    c=cbxCategoria.getItemCount();
-                }
-            c++;
-            }
-            int m=0;
-             while(m < cbxMarca.getItemCount()){
-                 String item = cbxMarca.getItemAt(m);
-                 String[] partes = item.split("-");
-                 int codMar = Integer.parseInt(partes[0].trim());
-                 if(marca == codMar){
-                    cbxMarca.setSelectedIndex(m);
-                    m=cbxMarca.getItemCount();
-                }
-             m++;
-             }
-            int cl=0;
-             while(cl < cbxCliente.getItemCount()){
-                 String item = cbxCliente.getItemAt(cl);
-                 String[] partes = item.split("-");
-                 int codCli = Integer.parseInt(partes[0].trim());
-                 if(Cliente == codCli){
-                    cbxCliente.setSelectedIndex(cl);
-                    cl=cbxCliente.getItemCount();
-                }
-                cl++;
-            } 
-            
-                        
-        }                
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String texto = txtBuscar.getText();
-        String opcion = cbxOpcion.getSelectedItem().toString();
-        String condicion = "";
-        
-        if(opcion.equals("DESCRIPCION")){
-            condicion = " where descripcion like '%" + texto + "%'";
-        }else{
-            condicion = " where id_vehiculo like '%" + texto + "%'";
-        }
-        grilla.setModel(oAbmVehiculo.cargarTabla(condicion));
-        txtBuscar.setText("");
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        operacion = "NUEVO";
-        contenedor.setSelectedIndex(1);
-        txtCodigo.setText("0");
-        txtDescripcion.setText("");
-        txtModelo.setText("");
-        txtAño.setText("");
-        cbxCategoria.setModel(oAbmCategoria.cargarCombo());
-        cbxCliente.setModel(oAbmCliente.cargarCombo());
-        cbxMarca.setModel(oAbmMarca.cargarCombo());
-        
-        txtDescripcion.requestFocus();
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        String codigo = "";
-        codigo = grilla.getValueAt(grilla.getSelectedRow(), 0).toString();
-        modeloVehiculo oModeloVehiculo = new modeloVehiculo();
-        oModeloVehiculo.setId(Integer.parseInt(codigo));
-        
-        boolean resultado = oAbmVehiculo.eliminarRegistro(oModeloVehiculo);
-        if(resultado == true){
-            JOptionPane.showMessageDialog(null, "Registro Eliminado");
-            grilla.setModel(oAbmVehiculo.cargarTabla(""));
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         contenedor.setSelectedIndex(0);
@@ -717,45 +590,19 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
         cbxCategoria.setModel(oAbmCategoria.cargarCombo());
         cbxCliente.setModel(oAbmCliente.cargarCombo());
         cbxMarca.setModel(oAbmMarca.cargarCombo());
-
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoClienteActionPerformed
-        panelNuevo.setVisible(true);
-        contenedor.setSelectedIndex(2);
-        if(oFrmClienteNuevo== null || oFrmClienteNuevo.isVisible() == false){
-            oFrmClienteNuevo = new frmClienteNuevo(oSesion);
-            panelNuevo.add(oFrmClienteNuevo);
-            oFrmClienteNuevo.setVisible(true);
-            oFrmClienteNuevo.toFront();
-            opcion=3;
-        }
-        
+        agregarCliente();
     }//GEN-LAST:event_btnNuevoClienteActionPerformed
 
     private void btnNuevaMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaMarcaActionPerformed
-        panelNuevo.setVisible(true);
-        contenedor.setSelectedIndex(2);
-        if(oFrmNuevaMarca == null || oFrmNuevaMarca.isVisible() == false){
-            oFrmNuevaMarca = new frmNuevaMarca(oSesion);
-            panelNuevo.add(oFrmNuevaMarca);
-            oFrmNuevaMarca.setVisible(true);
-            oFrmNuevaMarca.toFront();
-            opcion=2;
-        }
-
+        agregarMarca();
     }//GEN-LAST:event_btnNuevaMarcaActionPerformed
 
     private void btbNuevaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbNuevaCategoriaActionPerformed
-        panelNuevo.setVisible(true);
-        contenedor.setSelectedIndex(2);
-        if(oFrmCategoria == null || oFrmCategoria.isVisible() == false){
-            oFrmNuevaCategoria = new frmNuevaCategoria(oSesion);
-            panelNuevo.add(oFrmNuevaCategoria);
-            oFrmNuevaCategoria.setVisible(true);
-            oFrmNuevaCategoria.toFront();
-            opcion=1;
-        }
+        agregarCategoria();
+
     }//GEN-LAST:event_btbNuevaCategoriaActionPerformed
 
     private void cbxClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxClienteActionPerformed
@@ -778,25 +625,125 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        String codigo = "";
+        codigo = grilla.getValueAt(grilla.getSelectedRow(), 0).toString();
+        modeloVehiculo oModeloVehiculo = new modeloVehiculo();
+        oModeloVehiculo.setId(Integer.parseInt(codigo));
+
+        boolean resultado = oAbmVehiculo.eliminarRegistro(oModeloVehiculo);
+        if(resultado == true){
+            JOptionPane.showMessageDialog(null, "Registro Eliminado");
+            grilla.setModel(oAbmVehiculo.cargarTabla(""));
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        operacion = "MODIFICAR";
+        contenedor.setSelectedIndex(1);
+
+        String codigo = "";
+        codigo = grilla.getValueAt(grilla.getSelectedRow(), 0).toString();
+
+        oModeloVehiculo = new modeloVehiculo();
+        oModeloVehiculo.setId(Integer.parseInt(codigo));
+
+        boolean resultado = oAbmVehiculo.cargarRegistro(oModeloVehiculo);
+        if(resultado == true){
+            txtCodigo.setText(String.valueOf(oModeloVehiculo.getId()));
+            txtDescripcion.setText(oModeloVehiculo.getDescripcion());
+            txtModelo.setText(String.valueOf(oModeloVehiculo.getModelo()));
+            txtAño.setText(String.valueOf(oModeloVehiculo.getAño()));
+            int categoria = oModeloVehiculo.getCategoria_fk();
+            int marca = oModeloVehiculo.getMarca_fk();
+            int Cliente = oModeloVehiculo.getCliente_fk();
+            int c=0;
+            while(c < cbxCategoria.getItemCount()){
+                String item = cbxCategoria.getItemAt(c);
+                String[] partes = item.split("-");
+                int codCat = Integer.parseInt(partes[0].trim());
+                if(categoria == codCat ){
+                    cbxCategoria.setSelectedIndex(c);
+                    c=cbxCategoria.getItemCount();
+                }
+                c++;
+            }
+            int m=0;
+            while(m < cbxMarca.getItemCount()){
+                String item = cbxMarca.getItemAt(m);
+                String[] partes = item.split("-");
+                int codMar = Integer.parseInt(partes[0].trim());
+                if(marca == codMar){
+                    cbxMarca.setSelectedIndex(m);
+                    m=cbxMarca.getItemCount();
+                }
+                m++;
+            }
+            int cl=0;
+            while(cl < cbxCliente.getItemCount()){
+                String item = cbxCliente.getItemAt(cl);
+                String[] partes = item.split("-");
+                int codCli = Integer.parseInt(partes[0].trim());
+                if(Cliente == codCli){
+                    cbxCliente.setSelectedIndex(cl);
+                    cl=cbxCliente.getItemCount();
+                }
+                cl++;
+            }
+
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        operacion = "NUEVO";
+        contenedor.setSelectedIndex(1);
+        txtCodigo.setText("0");
+        txtDescripcion.setText("");
+        txtModelo.setText("");
+        txtAño.setText("");
+        cbxCategoria.setModel(oAbmCategoria.cargarCombo());
+        cbxCliente.setModel(oAbmCliente.cargarCombo());
+        cbxMarca.setModel(oAbmMarca.cargarCombo());
+
+        txtDescripcion.requestFocus();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String texto = txtBuscar.getText();
+        String opcion = cbxOpcion.getSelectedItem().toString();
+        String condicion = "";
+
+        if(opcion.equals("DESCRIPCION")){
+            condicion = " where descripcion like '%" + texto + "%'";
+        }else{
+            condicion = " where id_vehiculo like '%" + texto + "%'";
+        }
+        grilla.setModel(oAbmVehiculo.cargarTabla(condicion));
+        txtBuscar.setText("");
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
     private void cbxOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxOpcionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxOpcionActionPerformed
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-               contenedor.setSelectedIndex(1);
-               if(opcion == 3){
-                   cbxCliente.requestFocus();
-               }else if(opcion==2){
-                   cbxMarca.requestFocus();            
-               }else{
-                   cbxCategoria.requestFocus();
-               }
-               panelNuevo.setVisible(false);
-                cbxCategoria.setModel(oAbmCategoria.cargarCombo());
-                cbxCliente.setModel(oAbmCliente.cargarCombo());
-                cbxMarca.setModel(oAbmMarca.cargarCombo());
-    }//GEN-LAST:event_btnVolverActionPerformed
-
+    public void agregarCliente() {
+        oNewClienteJD = new newClienteJD(null, closable, oSesion, this);
+        oNewClienteJD.setVisible(true);
+     }
+    
+    public void agregarCategoria() {
+        oFrmNewCategoriaJD1 = new frmNewCategoriaJD1(null, closable, oSesion, this);
+        oFrmNewCategoriaJD1.setVisible(true);
+     }
+    public void agregarMarca() {  
+        oFrmNewMarcaJD11 = new  frmNewMarcaJD11(null, closable, oSesion, this);
+         oFrmNewMarcaJD11.setVisible(true);
+     }  
+      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btbNuevaCategoria;
@@ -809,11 +756,10 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnNuevoCliente;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnVolver;
     private javax.swing.ButtonGroup buttonGroup1;
     public javax.swing.JComboBox<String> cbxCategoria;
-    private javax.swing.JComboBox<String> cbxCliente;
-    private javax.swing.JComboBox<String> cbxMarca;
+    public javax.swing.JComboBox<String> cbxCliente;
+    public javax.swing.JComboBox<String> cbxMarca;
     private javax.swing.JComboBox<String> cbxOpcion;
     private javax.swing.JTabbedPane contenedor;
     private javax.swing.JTable grilla;
@@ -836,7 +782,6 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panelEdicion;
     private javax.swing.JPanel panelNavegacion;
-    private javax.swing.JPanel panelNuevo;
     private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigo;

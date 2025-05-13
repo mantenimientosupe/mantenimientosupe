@@ -11,7 +11,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     sesion oSesion;
     //frmVenta oFrmVenta;
     frmProveedor oFrmProveedor;
-    frmCliente oFrmCliente;
+    frmClientE oFrmCliente;
     frmCategoria oFrmCategoria;
     frmMarca oFrmMarca;
     frmMecanico oFrmMecanico;
@@ -241,7 +241,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void sm_rClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rClienteActionPerformed
         if(oFrmCliente == null || oFrmCliente.isVisible() == false){
-            oFrmCliente = new frmCliente(oSesion);
+            oFrmCliente = new frmClientE(oSesion);
             contenedor.add(oFrmCliente);
             oFrmCliente.setVisible(true);
             oFrmCliente.toFront();

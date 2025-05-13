@@ -9,9 +9,9 @@ import javax.swing.JOptionPane;
 public class conexion {
     private String db = "mantenimientosupecde";
     private String usuario = "root";
-    private String password = "";
+    private String password = "upe2024";
     private String servidor = "localhost";
-    private String puerto = "3307";
+    private String puerto = "3306";
     private String url = "jdbc:mysql://" + servidor + ":" + puerto + "/" + db;
     private Connection cvcon = null;
     

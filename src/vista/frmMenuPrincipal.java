@@ -11,12 +11,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     sesion oSesion;
     //frmVenta oFrmVenta;
     frmProveedor oFrmProveedor;
-    frmCliente oFrmCliente;
+    //frmCliente oFrmCliente;
     frmCategoria oFrmCategoria;
     frmMarca oFrmMarca;
     frmMecanico oFrmMecanico;
     frmProducto oFrmProducto;
     frmVehiculos oFrmVehiculos;
+    frmUsuario oFrmUsuario;
     abmMarca oAbmMarca;
     
     public frmMenuPrincipal() {
@@ -68,6 +69,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         sm_rMarcas = new javax.swing.JMenuItem();
         sm_rMecanico = new javax.swing.JMenuItem();
         sm_rVehiculo = new javax.swing.JMenuItem();
+        sm_rUsuario = new javax.swing.JMenuItem();
         mOperaciones = new javax.swing.JMenu();
         sm_oCompra = new javax.swing.JMenuItem();
         sm_oVenta = new javax.swing.JMenuItem();
@@ -175,6 +177,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rVehiculo);
 
+        sm_rUsuario.setText("Usuario");
+        sm_rUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sm_rUsuarioActionPerformed(evt);
+            }
+        });
+        mRegistro.add(sm_rUsuario);
+
         jMenuBar1.add(mRegistro);
 
         mOperaciones.setText("Operaciones");
@@ -240,12 +250,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_ms_rProveedorActionPerformed
 
     private void sm_rClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rClienteActionPerformed
-        if(oFrmCliente == null || oFrmCliente.isVisible() == false){
+       /* if(oFrmCliente == null || oFrmCliente.isVisible() == false){
             oFrmCliente = new frmCliente(oSesion);
             contenedor.add(oFrmCliente);
             oFrmCliente.setVisible(true);
             oFrmCliente.toFront();
-        }   
+        } */  
     }//GEN-LAST:event_sm_rClienteActionPerformed
 
     private void sm_rCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rCategoriaActionPerformed
@@ -294,6 +304,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_sm_rVehiculoActionPerformed
+
+    private void sm_rUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rUsuarioActionPerformed
+        if(oFrmUsuario == null || oFrmUsuario.isVisible() == false){
+            oFrmUsuario = new frmUsuario(oSesion);
+            contenedor.add(oFrmUsuario);
+            oFrmUsuario.setVisible(true);
+            oFrmUsuario.toFront();}
+    }//GEN-LAST:event_sm_rUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,6 +367,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem sm_rMarcas;
     private javax.swing.JMenuItem sm_rMecanico;
     private javax.swing.JMenuItem sm_rProducto;
+    private javax.swing.JMenuItem sm_rUsuario;
     private javax.swing.JMenuItem sm_rVehiculo;
     private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables

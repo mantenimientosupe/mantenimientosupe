@@ -61,12 +61,12 @@ public class abmProducto extends config.conexion{
                 filas[1] = datos.getString("barra");
                 filas[2] = datos.getString("descripcion");
                 filas[3] = datos.getInt("iva");
-                filas[4] = datos.getDouble("costo");
-                filas[5] = datos.getDouble("costomedio");
-                filas[6] = datos.getDouble("precio_unitario");
-                filas[7] = datos.getDouble("precio_mayorista");
-                filas[8] = datos.getDouble("stock");
-                filas[9] = datos.getDouble("stock_minimo");
+                filas[4] = datos.getFloat("costo");
+                filas[5] = datos.getFloat("costomedio");
+                filas[6] = datos.getFloat("precio_unitario");
+                filas[7] = datos.getFloat("precio_mayorista");
+                filas[8] = datos.getFloat("stock");
+                filas[9] = datos.getFloat("stock_minimo");
                 filas[10] = datos.getInt("estado");
                 filas[11] = datos.getInt("id_categoria_fk");
                 filas[12] = datos.getInt("id_marca_fk");
@@ -83,7 +83,48 @@ public class abmProducto extends config.conexion{
         return modelo;
         
         }
-    
+    public boolean verProductoVenta(modeloProducto pModelo) {
+        PreparedStatement preparaConsulta = null;
+        Connection conex = getAbrirConexion();
+        String sql = "";
+        ResultSet resultado = null;
+
+        try {
+            if (pModelo.getId() == 0) {
+                sql = "select * from producto where estado = 1 and barra = ? ";
+                preparaConsulta = conex.prepareStatement(sql);
+                preparaConsulta.setString(1, pModelo.getBarra());
+            } else {
+                sql = "select * from producto where estado = 1 and (barra = ?  or id = ?) ";
+                preparaConsulta = conex.prepareStatement(sql);
+                preparaConsulta.setString(1, pModelo.getBarra());
+                preparaConsulta.setInt(2, pModelo.getId());
+            }
+
+            resultado = preparaConsulta.executeQuery();
+            if (resultado.next() == true) {
+                //se carga en el modelo los datos obtenidos de la db-----------------------------------
+                pModelo.setId(resultado.getInt("id"));
+                pModelo.setBarra(resultado.getString("barra"));
+                pModelo.setDescripcion(resultado.getString("descripcion"));
+                pModelo.setIva(resultado.getByte("iva"));
+                pModelo.setCosto(resultado.getFloat("costo"));
+                pModelo.setCosto_medio(resultado.getFloat("costomedio"));
+                pModelo.setPrecio_unitario(resultado.getFloat("precio_unitario"));
+                pModelo.setPrecio_mayorista(resultado.getFloat("precio_mayorista"));
+                pModelo.setStock(resultado.getFloat("stock"));
+                pModelo.setEstado(resultado.getByte("estado"));
+                conex.close();
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e, oSesion.getTituloMensaje(), 1);
+            return false;
+        }
+    }
     
     public boolean cargarRegistro(modeloProducto pModelo){
         PreparedStatement preparaConsulta = null;
@@ -103,12 +144,12 @@ public class abmProducto extends config.conexion{
                 pModelo.setBarra(resultado.getString("barra"));
                 pModelo.setDescripcion(resultado.getString("descripcion"));
                 pModelo.setIva(resultado.getInt("iva"));
-                pModelo.setCosto(resultado.getDouble("costo"));
-                pModelo.setCosto_medio(resultado.getDouble("costomedio"));
-                pModelo.setPrecio_unitario(resultado.getDouble("precio_unitario"));
-                pModelo.setPrecio_mayorista(resultado.getDouble("precio_mayorista"));
-                pModelo.setStock(resultado.getDouble("stock"));
-                pModelo.setStock_minimo(resultado.getDouble("stock_minimo"));
+                pModelo.setCosto(resultado.getFloat("costo"));
+                pModelo.setCosto_medio(resultado.getFloat("costomedio"));
+                pModelo.setPrecio_unitario(resultado.getFloat("precio_unitario"));
+                pModelo.setPrecio_mayorista(resultado.getFloat("precio_mayorista"));
+                pModelo.setStock(resultado.getFloat("stock"));
+                pModelo.setStock_minimo(resultado.getFloat("stock_minimo"));
                 pModelo.setEstado(resultado.getInt("estado"));
                 pModelo.setCategoria_fk(resultado.getInt("id_categoria_fk"));
                 pModelo.setMarca_fk(resultado.getInt("id_marca_fk"));
@@ -155,12 +196,12 @@ public class abmProducto extends config.conexion{
                 preparaConsulta.setString(1,modelo.getBarra());
                 preparaConsulta.setString(2,modelo.getDescripcion());
                 preparaConsulta.setInt(3,modelo.getIva());
-                preparaConsulta.setDouble(4,modelo.getCosto());
-                preparaConsulta.setDouble(5,modelo.getCosto_medio());
-                preparaConsulta.setDouble(6,modelo.getPrecio_unitario());
-                preparaConsulta.setDouble(7,modelo.getPrecio_mayorista());
-                preparaConsulta.setDouble(8,modelo.getStock());
-                preparaConsulta.setDouble(9,modelo.getStock_minimo());
+                preparaConsulta.setFloat(4,modelo.getCosto());
+                preparaConsulta.setFloat(5,modelo.getCosto_medio());
+                preparaConsulta.setFloat(6,modelo.getPrecio_unitario());
+                preparaConsulta.setFloat(7,modelo.getPrecio_mayorista());
+                preparaConsulta.setFloat(8,modelo.getStock());
+                preparaConsulta.setFloat(9,modelo.getStock_minimo());
                 preparaConsulta.setInt(10,modelo.getEstado());
                 preparaConsulta.setInt(11,modelo.getCategoria_fk());
                 preparaConsulta.setInt(12,modelo.getMarca_fk());
@@ -187,12 +228,12 @@ public class abmProducto extends config.conexion{
             preparaConsulta.setString(1,modelo.getBarra());
             preparaConsulta.setString(2,modelo.getDescripcion());
             preparaConsulta.setInt(3,modelo.getIva());
-            preparaConsulta.setDouble(4,modelo.getCosto());
-            preparaConsulta.setDouble(5,modelo.getCosto_medio());
-            preparaConsulta.setDouble(6,modelo.getPrecio_unitario());
-            preparaConsulta.setDouble(7,modelo.getPrecio_mayorista());
-            preparaConsulta.setDouble(8,modelo.getStock());
-            preparaConsulta.setDouble(9,modelo.getStock_minimo());
+            preparaConsulta.setFloat(4,modelo.getCosto());
+            preparaConsulta.setFloat(5,modelo.getCosto_medio());
+            preparaConsulta.setFloat(6,modelo.getPrecio_unitario());
+            preparaConsulta.setFloat(7,modelo.getPrecio_mayorista());
+            preparaConsulta.setFloat(8,modelo.getStock());
+            preparaConsulta.setFloat(9,modelo.getStock_minimo());
             preparaConsulta.setInt(10,modelo.getEstado());
            // preparaConsulta.setInt(11,modelo.getCategoria_fk());
            // preparaConsulta.setInt(12,modelo.getMarca_fk());
@@ -208,6 +249,34 @@ public class abmProducto extends config.conexion{
         
     }
     
+    public DefaultTableModel cargarTablaSeleccion(String condicion) {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        modeloTabla.setColumnIdentifiers(new Object[]{"Id", "Barra", "Descripcion", "Precio May.", "Precio Unit.", "Stock"});
+
+        PreparedStatement preparaConsulta = null;
+        Connection conex = getAbrirConexion();
+        String sql = "";
+        ResultSet resultado = null;
+        try {
+            sql = "select * from producto " + condicion;
+            preparaConsulta = conex.prepareStatement(sql);
+            resultado = preparaConsulta.executeQuery();
+
+            while (resultado.next() == true) {
+                modeloTabla.addRow(new Object[]{
+                    resultado.getInt("id"),
+                    resultado.getString("barra"),
+                    resultado.getString("descripcion"),
+                    resultado.getFloat("precio_mayorista"),
+                    resultado.getFloat("precio_unitario"),
+                    resultado.getFloat("stock")
+                });
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e, oSesion.getTituloMensaje(), 1);
+        }
+        return modeloTabla;
+    }
     
         
 }

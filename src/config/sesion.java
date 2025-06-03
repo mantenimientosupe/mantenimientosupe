@@ -308,6 +308,15 @@ public final class sesion extends conexion {
          }
      }
      
+     public boolean validarFloat(String valor){
+         try {
+             Float.parseFloat(valor);
+             return true;
+         } catch (Exception e) {
+             return false;
+         }
+     }
+     
      
      public void validarNumeros(String texto, java.awt.event.KeyEvent evt) {
         char letra = evt.getKeyChar();

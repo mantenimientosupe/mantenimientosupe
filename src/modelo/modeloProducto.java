@@ -6,7 +6,7 @@ public class modeloProducto {
     
     private int id, estado, iva, categoria_fk, marca_fk, proveedor_fk;
     private String barra, descripcion, imagen;
-    private double costo, costo_medio, precio_unitario, precio_mayorista, stock, stock_minimo;
+    private float costo, costo_medio, precio_unitario, precio_mayorista, stock, stock_minimo;
     
     public modeloProducto(){
     }
@@ -83,55 +83,58 @@ public class modeloProducto {
         this.imagen = imagen;
     }
 
-    public double getCosto() {
+    public float getCosto() {
         return costo;
     }
 
-    public void setCosto(double costo) {
+    public void setCosto(float costo) {
         this.costo = costo;
     }
 
-    public double getCosto_medio() {
+    public float getCosto_medio() {
         return costo_medio;
     }
 
-    public void setCosto_medio(double costo_medio) {
+    public void setCosto_medio(float costo_medio) {
         this.costo_medio = costo_medio;
     }
 
-    public double getPrecio_unitario() {
+    public float getPrecio_unitario() {
         return precio_unitario;
     }
 
-    public void setPrecio_unitario(double precio_unitario) {
+    public void setPrecio_unitario(float precio_unitario) {
         this.precio_unitario = precio_unitario;
     }
 
-    public double getPrecio_mayorista() {
+    public float getPrecio_mayorista() {
         return precio_mayorista;
     }
 
-    public void setPrecio_mayorista(double precio_mayorista) {
+    public void setPrecio_mayorista(float precio_mayorista) {
         this.precio_mayorista = precio_mayorista;
     }
 
-    public double getStock() {
+    public float getStock() {
         return stock;
     }
 
-    public void setStock(double stock) {
+    public void setStock(float stock) {
         this.stock = stock;
     }
 
-    public double getStock_minimo() {
+    public float getStock_minimo() {
         return stock_minimo;
     }
 
-    public void setStock_minimo(double stock_minimo) {
+    public void setStock_minimo(float stock_minimo) {
         this.stock_minimo = stock_minimo;
     }
-
-    public modeloProducto(int id, int estado, int iva, int categoria_fk, int marca_fk, int proveedor_fk, String barra, String descripcion, String imagen, double costo, double costo_medio, double precio_unitario, double precio_mayorista, double stock, double stock_minimo) {
+    
+    
+   
+    
+    public modeloProducto(int id, int estado, int iva, int categoria_fk, int marca_fk, int proveedor_fk, String barra, String descripcion, String imagen, float costo, float costo_medio, float precio_unitario, float precio_mayorista, float stock, float stock_minimo) {
         this.id = id;
         this.estado = estado;
         this.iva = iva;

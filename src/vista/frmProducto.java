@@ -859,12 +859,12 @@ public class frmProducto extends javax.swing.JInternalFrame {
                 oModeloProducto.setBarra(txtBarra.getText());
                 oModeloProducto.setDescripcion(txtDescripcion.getText());
                 oModeloProducto.setIva(Integer.parseInt(txtIva.getText()));
-                oModeloProducto.setCosto(Double.parseDouble(txtCosto.getText()));
-                oModeloProducto.setCosto_medio(Double.parseDouble(txtCostoMedio.getText()));
-                oModeloProducto.setPrecio_unitario(Double.parseDouble(txtPrecioUnitario.getText()));
-                oModeloProducto.setPrecio_mayorista(Double.parseDouble(txtPrecioMayorista.getText()));
-                oModeloProducto.setStock(Double.parseDouble(txtStock.getText()));
-                oModeloProducto.setStock_minimo(Double.parseDouble(txtStockMinimo.getText()));
+                oModeloProducto.setCosto(Float.parseFloat(txtCosto.getText()));
+                oModeloProducto.setCosto_medio(Float.parseFloat(txtCostoMedio.getText()));
+                oModeloProducto.setPrecio_unitario(Float.parseFloat(txtPrecioUnitario.getText()));
+                oModeloProducto.setPrecio_mayorista(Float.parseFloat(txtPrecioMayorista.getText()));
+                oModeloProducto.setStock(Float.parseFloat(txtStock.getText()));
+                oModeloProducto.setStock_minimo(Float.parseFloat(txtStockMinimo.getText()));
                 oModeloProducto.setEstado(Integer.parseInt(txtEstado.getText()));
                 String cat = cbxCategoria.getSelectedItem().toString();
                 String[] partes = cat.split("-");  

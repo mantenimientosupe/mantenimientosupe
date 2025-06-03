@@ -3,15 +3,17 @@ package vista;
 
 import abm.abmMarca;
 import config.sesion;
+import java.awt.Dimension;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class frmMenuPrincipal extends javax.swing.JFrame {
 
     sesion oSesion;
-    //frmVenta oFrmVenta;
+    Servicios oFrmServicios;
     frmProveedor oFrmProveedor;
-    //frmCliente oFrmCliente;
+    frmCliente oFrmCliente;
     frmCategoria oFrmCategoria;
     frmMarca oFrmMarca;
     frmMecanico oFrmMecanico;
@@ -74,11 +76,15 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         sm_oCompra = new javax.swing.JMenuItem();
         sm_oVenta = new javax.swing.JMenuItem();
         sm_oCaja = new javax.swing.JMenuItem();
+        sm_oNuevoServicio = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        contenedor.setBackground(new java.awt.Color(153, 204, 255));
         contenedor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
@@ -89,7 +95,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
+            .addGap(0, 396, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 102));
@@ -112,10 +118,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        mRegistro.setText("Registro");
-        mRegistro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(436, 50));
 
-        sm_rProducto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        mRegistro.setText("Registro");
+        mRegistro.setFocusable(false);
+
         sm_rProducto.setText("Producto");
         sm_rProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +131,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rProducto);
 
-        sm_rCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_rCliente.setText("Cliente");
         sm_rCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +139,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rCliente);
 
-        ms_rProveedor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ms_rProveedor.setText("Proveedor");
         ms_rProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +147,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(ms_rProveedor);
 
-        sm_rCategoria.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_rCategoria.setText("Categoria");
         sm_rCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +155,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rCategoria);
 
-        sm_rMarcas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_rMarcas.setText("Marcas");
         sm_rMarcas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +163,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mRegistro.add(sm_rMarcas);
 
-        sm_rMecanico.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_rMecanico.setText("Mecanico");
         sm_rMecanico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,13 +190,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(mRegistro);
 
         mOperaciones.setText("Operaciones");
-        mOperaciones.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        sm_oCompra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_oCompra.setText("Compra");
         mOperaciones.add(sm_oCompra);
 
-        sm_oVenta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_oVenta.setText("Venta");
         sm_oVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,11 +202,36 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         });
         mOperaciones.add(sm_oVenta);
 
-        sm_oCaja.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         sm_oCaja.setText("Caja");
         mOperaciones.add(sm_oCaja);
 
+        sm_oNuevoServicio.setText("Nuevo Servicio ");
+        sm_oNuevoServicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sm_oNuevoServicioActionPerformed(evt);
+            }
+        });
+        mOperaciones.add(sm_oNuevoServicio);
+
         jMenuBar1.add(mOperaciones);
+
+        jMenu1.setText("Mantenimiento");
+
+        jMenuItem1.setText("Ayuda");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem3.setText("Configuracion");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem2.setText("Salir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
 
@@ -243,63 +267,79 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void ms_rProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ms_rProveedorActionPerformed
         if(oFrmProveedor == null || oFrmProveedor.isVisible() == false){
             oFrmProveedor = new frmProveedor(oSesion);
-            contenedor.add(oFrmProveedor);
-            oFrmProveedor.setVisible(true);
-            oFrmProveedor.toFront();    
+            CentrarVentana(oFrmProveedor);
+            //contenedor.add(oFrmProveedor);
+            //oFrmProveedor.setVisible(true);
+            //oFrmProveedor.toFront();    
        }        
     }//GEN-LAST:event_ms_rProveedorActionPerformed
 
     private void sm_rClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rClienteActionPerformed
-       /* if(oFrmCliente == null || oFrmCliente.isVisible() == false){
+
+       
+        if(oFrmCliente == null || oFrmCliente.isVisible() == false){
             oFrmCliente = new frmCliente(oSesion);
-            contenedor.add(oFrmCliente);
-            oFrmCliente.setVisible(true);
-            oFrmCliente.toFront();
-        } */  
+            CentrarVentana(oFrmCliente);
+            //contenedor.add(oFrmCliente);
+            //oFrmCliente.setVisible(true);
+            //oFrmCliente.toFront();
+        }   
     }//GEN-LAST:event_sm_rClienteActionPerformed
 
     private void sm_rCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rCategoriaActionPerformed
         if(oFrmCategoria == null || oFrmCategoria.isVisible() == false){
             oFrmCategoria = new frmCategoria(oSesion);
-            contenedor.add(oFrmCategoria);
-            oFrmCategoria.setVisible(true);
-            oFrmCategoria.toFront();
+            CentrarVentana(oFrmCategoria);
+            //contenedor.add(oFrmCategoria);
+            //oFrmCategoria.setVisible(true);
+            //oFrmCategoria.toFront();
         }   
     }//GEN-LAST:event_sm_rCategoriaActionPerformed
 
     private void sm_rMarcasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rMarcasActionPerformed
           if(oFrmMarca == null || oFrmMarca.isVisible() == false){
             oFrmMarca = new frmMarca(oSesion);
-            contenedor.add(oFrmMarca); 
-            oFrmMarca.setVisible(true);
-            oFrmMarca.toFront();
+            CentrarVentana(oFrmMarca);
+          //  contenedor.add(oFrmMarca); 
+           // oFrmMarca.setVisible(true);
+           // oFrmMarca.toFront();
         } 
     }//GEN-LAST:event_sm_rMarcasActionPerformed
 
     private void sm_rMecanicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rMecanicoActionPerformed
        if(oFrmMecanico == null || oFrmMecanico.isVisible() == false){
             oFrmMecanico = new frmMecanico(oSesion);
-            contenedor.add(oFrmMecanico);
-            oFrmMecanico.setVisible(true);
-            oFrmMecanico.toFront();
+            CentrarVentana(oFrmMecanico);
+            /*BasicInternalFrameUI ui = (BasicInternalFrameUI) oFrmMecanico.getUI();
+            if (ui.getNorthPane() != null) {
+                oFrmMecanico.setBorder(null);
+                ui.setNorthPane(null);
+                 }*/
+            //contenedor.add(oFrmMecanico);
+            //oFrmMecanico.setVisible(true);
+            //oFrmMecanico.toFront();
        }
     }//GEN-LAST:event_sm_rMecanicoActionPerformed
 
     private void sm_rProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rProductoActionPerformed
          if(oFrmProducto == null || oFrmProducto.isVisible() == false){
             oFrmProducto = new frmProducto(oSesion);
-            contenedor.add(oFrmProducto);
-            oFrmProducto.setVisible(true);
-            oFrmProducto.toFront();
+            CentrarVentana(oFrmProducto);
+            //contenedor.add(oFrmProducto);
+            //oFrmProducto.setVisible(true);
+            //oFrmProducto.toFront();
        }
     }//GEN-LAST:event_sm_rProductoActionPerformed
 
     private void sm_rVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rVehiculoActionPerformed
          if(oFrmVehiculos == null || oFrmVehiculos.isVisible() == false){
             oFrmVehiculos = new frmVehiculos(oSesion);
-            contenedor.add(oFrmVehiculos);
-            oFrmVehiculos.setVisible(true);
-            oFrmVehiculos.toFront();
+            //contenedor.add(oFrmVehiculos);
+            CentrarVentana(oFrmVehiculos);
+          //  oFrmVehiculos.setVisible(true);
+          //  oFrmVehiculos.toFront();
+             
+            
        }
         
         
@@ -313,54 +353,52 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             oFrmUsuario.toFront();}
     }//GEN-LAST:event_sm_rUsuarioActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void sm_oNuevoServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_oNuevoServicioActionPerformed
+            if(oFrmServicios == null || oFrmServicios.isVisible() == false){
+            oFrmServicios = new Servicios();
+            //contenedor.add(oFrmVehiculos);
+            CentrarVentana(oFrmServicios);
+            BasicInternalFrameUI ui = (BasicInternalFrameUI) oFrmServicios.getUI();
+            if (ui.getNorthPane() != null) {
+                oFrmServicios.setBorder(null);
+                ui.setNorthPane(null);
+                 }
+            
+            }
+    }//GEN-LAST:event_sm_oNuevoServicioActionPerformed
+
+    void  CentrarVentana(JInternalFrame frame){
+        contenedor.add(frame);
+        Dimension dimension=contenedor.getSize();
+        Dimension Dframe=frame.getSize();
+        frame.setLocation((dimension.width -Dframe.width)/2,(dimension.height-Dframe.height)/2);
+        frame.show();
+        
+    }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmMenuPrincipal().setVisible(true);
-            }
-        });
-    }
+    
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane contenedor;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenu mOperaciones;
     private javax.swing.JMenu mRegistro;
     private javax.swing.JMenuItem ms_rProveedor;
     private javax.swing.JMenuItem sm_oCaja;
     private javax.swing.JMenuItem sm_oCompra;
+    private javax.swing.JMenuItem sm_oNuevoServicio;
     private javax.swing.JMenuItem sm_oVenta;
     private javax.swing.JMenuItem sm_rCategoria;
     private javax.swing.JMenuItem sm_rCliente;

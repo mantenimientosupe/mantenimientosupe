@@ -12,6 +12,8 @@ public class frmLogin extends javax.swing.JFrame {
     
     public frmLogin() {
         initComponents();
+        txtUsuario.setText("DerPer");
+        txtPassword.setText("123");
     }
 
     

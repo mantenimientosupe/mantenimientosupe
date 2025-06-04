@@ -16,7 +16,7 @@ public class frmCliente extends javax.swing.JInternalFrame {
     String operacion = "";
     
     DefaultTableModel modeloGrilla = new DefaultTableModel();
-    
+    // intentsnfo actusliza
     public frmCliente() {
         initComponents();
     }

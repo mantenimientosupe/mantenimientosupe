@@ -1,7 +1,7 @@
 
 package vista;
 
-import abm.abmCliente;
+import abm.abmVehiculo;
 import config.sesion;
 import java.awt.Frame;
 import javax.swing.JInternalFrame;
@@ -9,32 +9,31 @@ import javax.swing.SwingUtilities;
 
 
 
-public class frmBuscarCliente extends javax.swing.JDialog {
+public class frmBuscarVehiculo extends javax.swing.JDialog {
     
     sesion oSesion;
     Servicios oFrmServicio;
-    abmCliente oAbmCliente;
+    abmVehiculo oAbmVehiculo;
     
 
     
 
-    public frmBuscarCliente(java.awt.Frame parent, boolean modal) {
+    public frmBuscarVehiculo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
     
-    public frmBuscarCliente(java.awt.Frame parent, boolean modal, sesion pSesion, JInternalFrame frmOrigen) {
+    public frmBuscarVehiculo(java.awt.Frame parent, boolean modal, sesion pSesion, JInternalFrame frmOrigen) {
         super(parent, modal);
         initComponents();
         oSesion = pSesion;
          if (frmOrigen instanceof Servicios) {
             this.oFrmServicio = (Servicios) frmOrigen; // sólo si es realmente Servicioss
           }
-        //oFrmServicio = frmOrigen;
-        oAbmCliente = new abmCliente(pSesion);
+        //oFrmVenta = frmOrigen;
+        oAbmVehiculo = new abmVehiculo(pSesion);
         cargarTabla();
-        grilla.requestFocus();
                 
         
     }
@@ -50,15 +49,15 @@ public class frmBuscarCliente extends javax.swing.JDialog {
         
         if(opcion.equals("CODIGO")){
             if(oSesion.validarInt(texto)==true){
-                condicion = " where id = " + texto; 
+                condicion = " where id_vehiculo = " + texto; 
             }
              
-        }else if(opcion.equals("RAZON SOCIAL")){
-            condicion = " where razon_social like '%" + texto +"%'";
+        }else if(opcion.equals("DESCRIPCION")){
+            condicion = " where descripcion like '%" + texto +"%'";
         }else{
-            condicion = " where documento_nro like '%" + texto +"%'";
+            condicion = " where marca like '%" + texto +"%'";
         }
-        grilla.setModel(oAbmCliente.cargarTabla(condicion));
+        grilla.setModel(oAbmVehiculo.cargarTabla(condicion));
         grilla.getSelectionModel().addSelectionInterval(0, 0);
     }
     
@@ -119,8 +118,7 @@ public class frmBuscarCliente extends javax.swing.JDialog {
         });
 
         cbxFiltro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "RAZON SOCIAL", "DOCUMENTO" }));
-        cbxFiltro.setSelectedIndex(1);
+        cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "DESCRIPCION", "MARCA" }));
 
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -218,17 +216,15 @@ public class frmBuscarCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
-        String codigo, razon_social;
+        String codigo, descripcion;
         codigo = grilla.getValueAt(grilla.getSelectedRow(), 0).toString();
-        razon_social = grilla.getValueAt(grilla.getSelectedRow(), 1).toString();
+        descripcion = grilla.getValueAt(grilla.getSelectedRow(), 1).toString();
         
-        oFrmServicio.txtIdCliente.setText(codigo);
-        oFrmServicio.txtNombreCliente.setText(razon_social);
+        /*oFrmServicio.txtIdVehiculo.setText(codigo);
+        oFrmServicio.txtNombreVehiculo.setText(descripcion);
         oFrmServicio.toFront();
-       // oFrmServicio.txtCodigoProducto.requestFocus();
-       oFrmServicio.cbxVehiculo.requestFocus();
-        this.dispose();
-      
+        oFrmServicio.txtCodigoProducto.requestFocus();
+        this.dispose();*/
         
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
@@ -249,14 +245,30 @@ public class frmBuscarCliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmBuscarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmBuscarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmBuscarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmBuscarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmBuscarVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -277,7 +289,7 @@ public class frmBuscarCliente extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                frmBuscarCliente dialog = new frmBuscarCliente(new javax.swing.JFrame(), true);
+                frmBuscarVehiculo dialog = new frmBuscarVehiculo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

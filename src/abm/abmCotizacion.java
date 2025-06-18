@@ -25,7 +25,7 @@ public class abmCotizacion extends conexion{
         ResultSet resultado = null;
 
         try {
-            sql = "SELECT * FROM sys_cotizacion order by fecha desc limit 1";
+            sql = "SELECT * FROM cotizacion order by fecha desc limit 1";
             preparaConsulta = conex.prepareStatement(sql);
             resultado = preparaConsulta.executeQuery();
             if (resultado.next() == true) {

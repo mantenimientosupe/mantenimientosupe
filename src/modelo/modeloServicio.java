@@ -5,10 +5,19 @@ import config.sesion;
 public class modeloServicio {
 
     sesion oSesion;
-    private int id_operacion, id_cliente, user, estado;
+    private int id_operacion, id_cliente, user, estado, id_vehiculo;
     private String factura_nro, tipo_venta;
     private float total_costo, subtotal, iva0, iva5, iva10, totalneto, ttl_pago, ttl_descuento, ttl_saldo;
     private String fecha;
+
+    public int getId_vehiculo() {
+        return id_vehiculo;
+    }
+
+    public void setId_vehiculo(int id_vehiculo) {
+        this.id_vehiculo = id_vehiculo;
+    }
+   
 
     public modeloServicio(sesion pSesion) {
         oSesion = pSesion;

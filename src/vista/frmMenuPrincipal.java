@@ -4,8 +4,12 @@ package vista;
 import abm.abmMarca;
 import config.sesion;
 import java.awt.Dimension;
+import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class frmMenuPrincipal extends javax.swing.JFrame {
@@ -348,9 +352,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void sm_rUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_rUsuarioActionPerformed
         if(oFrmUsuario == null || oFrmUsuario.isVisible() == false){
             oFrmUsuario = new frmUsuario(oSesion);
-            contenedor.add(oFrmUsuario);
-            oFrmUsuario.setVisible(true);
-            oFrmUsuario.toFront();}
+              CentrarVentana(oFrmUsuario);
+            //contenedor.add(oFrmUsuario);
+            //oFrmUsuario.setVisible(true);
+           // oFrmUsuario.toFront();
+        }
     }//GEN-LAST:event_sm_rUsuarioActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -359,13 +365,13 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
     private void sm_oNuevoServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sm_oNuevoServicioActionPerformed
             if(oFrmServicios == null || oFrmServicios.isVisible() == false){
-            oFrmServicios = new Servicios();
-            //contenedor.add(oFrmVehiculos);
+            oFrmServicios = new Servicios(oSesion);
             CentrarVentana(oFrmServicios);
+            
             BasicInternalFrameUI ui = (BasicInternalFrameUI) oFrmServicios.getUI();
             if (ui.getNorthPane() != null) {
-                oFrmServicios.setBorder(null);
-                ui.setNorthPane(null);
+                oFrmServicios.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));;
+              //  ui.setNorthPane(null);
                  }
             
             }
@@ -376,8 +382,20 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         Dimension dimension=contenedor.getSize();
         Dimension Dframe=frame.getSize();
         frame.setLocation((dimension.width -Dframe.width)/2,(dimension.height-Dframe.height)/2);
+        
         frame.show();
         
+    }
+    
+    public static void main(String args[]) {
+        
+       
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new frmMenuPrincipal().setVisible(true);
+            }
+        });
     }
     /**
      * @param args the command line arguments

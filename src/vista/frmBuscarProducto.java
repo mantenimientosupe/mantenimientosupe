@@ -9,7 +9,7 @@ import config.sesion;
 public class frmBuscarProducto extends javax.swing.JDialog {
 
     sesion oSesion;
-    Servicios oFrmVenta;
+    Servicios oFrmServicio;
     abmProducto oAbmProducto;
 
     public frmBuscarProducto(java.awt.Frame parent, boolean modal) {
@@ -20,7 +20,7 @@ public class frmBuscarProducto extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         oSesion = pSesion;
-        oFrmVenta = pFrmOrigen;
+        oFrmServicio = pFrmOrigen;
         oAbmProducto = new abmProducto(pSesion);
         cargarTabla();
         
@@ -33,7 +33,7 @@ public class frmBuscarProducto extends javax.swing.JDialog {
         
         if(opcion.equals("CODIGO")){
             if(oSesion.validarInt(texto)==true){
-                condicion = " where id = " + texto; 
+                condicion = " where id_producto = " + texto; 
             }
              
         }else if(opcion.equals("DESCRIPCION")){
@@ -103,6 +103,11 @@ public class frmBuscarProducto extends javax.swing.JDialog {
 
         cbxFiltro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "DESCRIPCION", "BARRA" }));
+        cbxFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFiltroActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -203,17 +208,21 @@ public class frmBuscarProducto extends javax.swing.JDialog {
           codigo = grilla.getValueAt(grilla.getSelectedRow(), 0).toString();
           descripcion= grilla.getValueAt(grilla.getSelectedRow(), 2).toString();
           
-         oFrmVenta.txtCodigoProducto.setText(codigo);
-         oFrmVenta.lblInfoCodigo.setText(codigo);
-         oFrmVenta.lblInfoDescripcion.setText(descripcion);
+         oFrmServicio.txtCodigoProducto.setText(codigo);
+         oFrmServicio.lblInfoCodigo.setText(codigo);
+         oFrmServicio.lblInfoDescripcion.setText(descripcion);
          
-         oFrmVenta.toFront();
-         oFrmVenta.txtCodigoProducto.requestFocus();
+         oFrmServicio.toFront();
+         oFrmServicio.txtCodigoProducto.requestFocus();
          this.dispose();
          
          
 
     }//GEN-LAST:event_btnSeleccionarActionPerformed
+
+    private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxFiltroActionPerformed
 
     /**
      * @param args the command line arguments

@@ -20,10 +20,7 @@ public class frmProducto extends javax.swing.JInternalFrame {
     abmCategoria oAbmCategoria = new abmCategoria(oSesion);
     abmProveedor oAbmProveedor = new abmProveedor(oSesion);
     abmMarca oAbmMarca = new abmMarca(oSesion);
-    //frmCategoria oFrmCategoria;
     frmNewCategoriaJD1 oFrmNewCategoriaJD1;
-    //frmMarca oFrmMarca;
-    //frmProveedor oFrmProveedor;
     String operacion = "";
     frmNewMarcaJD11 oFrmNewMarcaJD11;
     frmNewProveedorJD11 oFrmNewProveedorJD11;
@@ -137,6 +134,7 @@ public class frmProducto extends javax.swing.JInternalFrame {
         cbxOpcion.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         cbxOpcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "DESCRIPCION" }));
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/lupa.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +188,7 @@ public class frmProducto extends javax.swing.JInternalFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/nuevo.png"))); // NOI18N
         btnNuevo.setText("NUEVO");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,13 +196,15 @@ public class frmProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btnModificar.setText("MODIFICAR");
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/1178.png"))); // NOI18N
+        btnModificar.setText("Editar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
 
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/eliminar.png"))); // NOI18N
         btnEliminar.setText("ELIMINAR");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,6 +212,7 @@ public class frmProducto extends javax.swing.JInternalFrame {
             }
         });
 
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Salir.png"))); // NOI18N
         btnSalir.setText("SALIR");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,13 +226,13 @@ public class frmProducto extends javax.swing.JInternalFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -630,6 +632,7 @@ public class frmProducto extends javax.swing.JInternalFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel5.setForeground(new java.awt.Color(153, 204, 255));
 
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/GuardarTodo.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(null);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -638,6 +641,7 @@ public class frmProducto extends javax.swing.JInternalFrame {
             }
         });
 
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -924,27 +928,17 @@ public class frmProducto extends javax.swing.JInternalFrame {
 
     private void btnNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProveedorActionPerformed
         agregarProveedor(); 
-        /*if(oFrmProveedor == null || oFrmProveedor.isVisible() == false){
-            oFrmProveedor = new frmProveedor(oSesion);
-            contenedor.add(oFrmProveedor);
-            oFrmProveedor.setVisible(true);
-            oFrmProveedor.toFront();
-            }*/
+        
     }//GEN-LAST:event_btnNuevoProveedorActionPerformed
 
     private void btbNuevaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbNuevaCategoriaActionPerformed
         agregarCategoria();
-        /*if(oFrmCategoria == null || oFrmCategoria.isVisible() == false){
-            oFrmCategoria = new frmCategoria(oSesion);
-            contenedor.add(oFrmCategoria);
-            oFrmCategoria.setVisible(true);
-            oFrmCategoria.toFront();
-            } */  
+        
     }//GEN-LAST:event_btbNuevaCategoriaActionPerformed
 
     private void btnNuevaMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaMarcaActionPerformed
         agregarMarca(); 
-         
+  
     }//GEN-LAST:event_btnNuevaMarcaActionPerformed
 
     private void txtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoActionPerformed
@@ -952,15 +946,17 @@ public class frmProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtEstadoActionPerformed
     public void agregarCategoria() {
         oFrmNewCategoriaJD1 = new frmNewCategoriaJD1(null, closable, oSesion, this);
+        oFrmNewCategoriaJD1.setLocationRelativeTo(null);
         oFrmNewCategoriaJD1.setVisible(true);
      }
       public void agregarMarca() {
-       
         oFrmNewMarcaJD11 = new frmNewMarcaJD11(null, closable, oSesion, this);
+        oFrmNewMarcaJD11.setLocationRelativeTo(null);
         oFrmNewMarcaJD11.setVisible(true);
      }
       public void agregarProveedor() {
         oFrmNewProveedorJD11 = new frmNewProveedorJD11(null, closable, oSesion, this);
+        oFrmNewProveedorJD11.setLocationRelativeTo(null);
         oFrmNewProveedorJD11.setVisible(true);
  
      }

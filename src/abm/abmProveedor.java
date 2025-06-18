@@ -40,6 +40,8 @@ public class abmProveedor extends config.conexion{
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
+        }finally{
+            setCerrarConexion(conex);
         }
                         
         return modelo;
@@ -80,6 +82,8 @@ public class abmProveedor extends config.conexion{
             }                   
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e, oSesion.getTituloMensaje(), 1);
+        }finally{
+            setCerrarConexion(conex);
         }
                         
         return modelo;
@@ -117,6 +121,8 @@ public class abmProveedor extends config.conexion{
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e, oSesion.getTituloMensaje(), 1);
             return false;
+        }finally{
+            setCerrarConexion(conex);
         }
     } 
     public boolean eliminarRegistro(modelo.modeloProveedor modelo){
@@ -133,6 +139,8 @@ public class abmProveedor extends config.conexion{
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e, oSesion.getTituloMensaje(), 1);
             return false;
+        }finally{
+            setCerrarConexion(conex);
         }
     }
     
@@ -156,6 +164,8 @@ public class abmProveedor extends config.conexion{
             
             JOptionPane.showMessageDialog(null, "Error: " + e, oSesion.getTituloMensaje(), 1);
             return false;
+        }finally{
+            setCerrarConexion(conex);
         }
         
     } 
@@ -180,6 +190,8 @@ public class abmProveedor extends config.conexion{
             
             JOptionPane.showMessageDialog(null, "Error: " + e, oSesion.getTituloMensaje(), 1);
             return false;
+        }finally{
+            setCerrarConexion(conex);
         }
         
     }

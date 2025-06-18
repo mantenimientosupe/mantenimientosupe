@@ -217,6 +217,17 @@ public class frmLogin extends javax.swing.JFrame {
 
         
         /* Create and display the form */
+         try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
+            }
+        }
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException e) {
+        // Manejo de errores en caso de que Nimbus no esté disponible
+        System.err.println("Error al establecer Nimbus: " + e.getMessage());
+    }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmLogin().setVisible(true);

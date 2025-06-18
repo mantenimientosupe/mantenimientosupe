@@ -732,16 +732,19 @@ public class frmVehiculos extends javax.swing.JInternalFrame {
 
     public void agregarCliente() {
         oNewClienteJD = new newClienteJD(null, closable, oSesion, this);
+        oNewClienteJD.setLocationRelativeTo(null);
         oNewClienteJD.setVisible(true);
      }
     
     public void agregarCategoria() {
         oFrmNewCategoriaJD1 = new frmNewCategoriaJD1(null, closable, oSesion, this);
+        oFrmNewCategoriaJD1.setLocationRelativeTo(null);
         oFrmNewCategoriaJD1.setVisible(true);
      }
     public void agregarMarca() {  
         oFrmNewMarcaJD11 = new  frmNewMarcaJD11(null, closable, oSesion, this);
-         oFrmNewMarcaJD11.setVisible(true);
+        oFrmNewMarcaJD11.setLocationRelativeTo(null);
+        oFrmNewMarcaJD11.setVisible(true);
      }  
       
 

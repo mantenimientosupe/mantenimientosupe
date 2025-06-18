@@ -161,6 +161,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnBuscar">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagen/lupa.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
@@ -214,13 +217,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnNuevo" min="-2" pref="96" max="-2" attributes="0"/>
+                          <Component id="btnNuevo" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnModificar" min="-2" pref="96" max="-2" attributes="0"/>
+                          <Component id="btnModificar" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnEliminar" min="-2" pref="96" max="-2" attributes="0"/>
+                          <Component id="btnEliminar" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnSalir" min="-2" pref="96" max="-2" attributes="0"/>
+                          <Component id="btnSalir" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -243,6 +246,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnNuevo">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagen/nuevo.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="NUEVO"/>
                   </Properties>
                   <Events>
@@ -251,7 +257,10 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnModificar">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="MODIFICAR"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagen/1178.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModificarActionPerformed"/>
@@ -259,6 +268,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnEliminar">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagen/eliminar.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="ELIMINAR"/>
                   </Properties>
                   <Events>
@@ -267,6 +279,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSalir">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagen/Salir.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="SALIR"/>
                   </Properties>
                   <Events>
@@ -1060,6 +1075,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="btnGuardar">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagen/GuardarTodo.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Guardar"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
@@ -1071,6 +1089,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCancelar">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/imagen/Cancelar.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>

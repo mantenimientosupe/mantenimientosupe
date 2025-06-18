@@ -19,7 +19,34 @@ public class abmVehiculo extends config.conexion{
         oSesion = pSesion;
     }
     
+     public DefaultComboBoxModel cargarCombo(){
     
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(); 
+        
+        PreparedStatement preparaConsulta = null;
+        ResultSet datos = null;
+        Connection conex = getAbrirConexion();
+        String sql = "";
+        
+        try {
+            sql = "select * from vehiculo";
+            preparaConsulta = conex.prepareStatement(sql);
+            datos = preparaConsulta.executeQuery();
+            
+            while(datos.next() == true){
+                String valor = datos.getInt("id_vehiculo")+"-"+ datos.getString("descripcion");
+                modelo.addElement(valor);
+            }     
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        } finally{
+            setCerrarConexion(conex);
+        }
+                        
+        return modelo;
+    
+    }
     public DefaultTableModel cargarTabla(String condicion){
         //ahora cargar el objeto encabezado a default
         

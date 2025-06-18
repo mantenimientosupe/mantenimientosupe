@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.modeloMecanico;
@@ -17,6 +18,35 @@ public class abmMecanico extends config.conexion{
     public abmMecanico (sesion pSesion){
         oSesion = pSesion;
     }
+    public DefaultComboBoxModel cargarCombo(){
+    
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(); 
+        
+        PreparedStatement preparaConsulta = null;
+        ResultSet datos = null;
+        Connection conex = getAbrirConexion();
+        String sql = "";
+        
+        try {
+            sql = "select * from mecanico";
+            preparaConsulta = conex.prepareStatement(sql);
+            datos = preparaConsulta.executeQuery();
+            
+            while(datos.next() == true){
+                String valor = datos.getInt("id_mecanico")+"-"+ datos.getString("nombre");
+                modelo.addElement(valor);
+            }     
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+        } finally{
+            setCerrarConexion(conex);
+        }
+                        
+        return modelo;
+    
+    }
+    
     public DefaultTableModel cargarTabla(String condicion){
         //ahora cargar el objeto encabezado a default
         
@@ -58,8 +88,6 @@ public class abmMecanico extends config.conexion{
         
         }
     
-    
-    
     public boolean cargarRegistro(modeloMecanico pModelo){
         PreparedStatement preparaConsulta = null;
         Connection conex = getAbrirConexion();
@@ -91,6 +119,7 @@ public class abmMecanico extends config.conexion{
             return false;
         }
     } 
+    
     public boolean eliminarRegistro(modelo.modeloMecanico modelo){
         PreparedStatement preparaConsulta = null;
         Connection conex = getAbrirConexion();

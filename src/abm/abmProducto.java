@@ -95,7 +95,7 @@ public class abmProducto extends config.conexion{
                 preparaConsulta = conex.prepareStatement(sql);
                 preparaConsulta.setString(1, pModelo.getBarra());
             } else {
-                sql = "select * from producto where estado = 1 and (barra = ?  or id = ?) ";
+                sql = "select * from producto where estado = 1 and (barra = ?  or id_producto = ?) ";
                 preparaConsulta = conex.prepareStatement(sql);
                 preparaConsulta.setString(1, pModelo.getBarra());
                 preparaConsulta.setInt(2, pModelo.getId());
@@ -251,7 +251,7 @@ public class abmProducto extends config.conexion{
     
     public DefaultTableModel cargarTablaSeleccion(String condicion) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
-        modeloTabla.setColumnIdentifiers(new Object[]{"Id", "Barra", "Descripcion", "Precio May.", "Precio Unit.", "Stock"});
+        modeloTabla.setColumnIdentifiers(new Object[]{"Id_producto", "Barra", "Descripcion", "Precio May.", "Precio Unit.", "Stock"});
 
         PreparedStatement preparaConsulta = null;
         Connection conex = getAbrirConexion();
@@ -264,7 +264,7 @@ public class abmProducto extends config.conexion{
 
             while (resultado.next() == true) {
                 modeloTabla.addRow(new Object[]{
-                    resultado.getInt("id"),
+                    resultado.getInt("id_producto"),
                     resultado.getString("barra"),
                     resultado.getString("descripcion"),
                     resultado.getFloat("precio_mayorista"),

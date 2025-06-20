@@ -2,12 +2,21 @@
 package vista;
 
 import abm.abmMarca;
+import config.conexion;
 import config.sesion;
 import java.awt.event.KeyAdapter;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import modelo.modeloMarca;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class frmMarca extends javax.swing.JInternalFrame {
@@ -30,9 +39,13 @@ public class frmMarca extends javax.swing.JInternalFrame {
         oModeloMarca = new modeloMarca();
         oAbmMarca = new abmMarca(pSesion);
         grilla.setModel(oAbmMarca.cargarTabla(""));
-
+        grilla.getColumn("CODIGO").setPreferredWidth(20);
+        grilla.getColumn("DESCRIPCION").setPreferredWidth(300);
+        grilla.getColumn("ESTADO").setPreferredWidth(20);
+        
+       
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +69,7 @@ public class frmMarca extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
         panelEdicion = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -128,16 +142,24 @@ public class frmMarca extends javax.swing.JInternalFrame {
 
         grilla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "DESCRIPCION", "ESTADO"
             }
         ));
         jScrollPane1.setViewportView(grilla);
+        if (grilla.getColumnModel().getColumnCount() > 0) {
+            grilla.getColumnModel().getColumn(0).setMinWidth(70);
+            grilla.getColumnModel().getColumn(0).setPreferredWidth(70);
+            grilla.getColumnModel().getColumn(0).setMaxWidth(90);
+            grilla.getColumnModel().getColumn(2).setMinWidth(50);
+            grilla.getColumnModel().getColumn(2).setPreferredWidth(50);
+            grilla.getColumnModel().getColumn(2).setMaxWidth(60);
+        }
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -169,12 +191,21 @@ public class frmMarca extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReporte.setText("Imprimir Marcas Activas");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnReporte)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,7 +223,8 @@ public class frmMarca extends javax.swing.JInternalFrame {
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -446,6 +478,9 @@ public class frmMarca extends javax.swing.JInternalFrame {
             condicion = " where id_marca like '%" + texto + "%'";
         }
         grilla.setModel(oAbmMarca.cargarTabla(condicion));
+        grilla.getColumn("CODIGO").setPreferredWidth(20);
+        grilla.getColumn("DESCRIPCION").setPreferredWidth(300);
+        grilla.getColumn("ESTADO").setPreferredWidth(20);
         txtBuscar.setText("");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -472,6 +507,9 @@ public class frmMarca extends javax.swing.JInternalFrame {
         if(resultado == true){
             JOptionPane.showMessageDialog(null, "Registro Eliminado");
             grilla.setModel(oAbmMarca.cargarTabla(""));
+            grilla.getColumn("CODIGO").setPreferredWidth(20);
+            grilla.getColumn("DESCRIPCION").setPreferredWidth(300);
+            grilla.getColumn("ESTADO").setPreferredWidth(20);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -512,6 +550,9 @@ public class frmMarca extends javax.swing.JInternalFrame {
        txtEstado.setText("");
        contenedor.setSelectedIndex(0);
        grilla.setModel(oAbmMarca.cargarTabla(""));
+        grilla.getColumn("CODIGO").setPreferredWidth(20);
+        grilla.getColumn("DESCRIPCION").setPreferredWidth(300);
+        grilla.getColumn("ESTADO").setPreferredWidth(20);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
@@ -542,6 +583,30 @@ public class frmMarca extends javax.swing.JInternalFrame {
             btnGuardar.doClick();}
     }//GEN-LAST:event_btnBuscarKeyPressed
 
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+        try {
+            conexion con = new conexion();
+            Connection conec = con.getAbrirConexion();
+            
+            // Filtrar Marcas Activas
+            Map filtro = new HashMap();
+            filtro.put("MActivo", 1);
+            
+            //Pasar la ruta del reporte
+            String ruta = "src/reportes/rptMarcasActivas.jasper";
+            //Cargar y rellenar el reporte
+            JasperPrint reporteMArca = JasperFillManager.fillReport(ruta, null, conec);
+            
+            // Mostrar el reporte en pantalla
+            JasperViewer.viewReport(reporteMArca, false);
+            conec.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+    }//GEN-LAST:event_btnReporteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -550,10 +615,11 @@ public class frmMarca extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnReporte;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cbxOpcion;
     private javax.swing.JTabbedPane contenedor;
-    private javax.swing.JTable grilla;
+    public javax.swing.JTable grilla;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

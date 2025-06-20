@@ -34,11 +34,11 @@ public class abmProducto extends config.conexion{
         encabezado[2] = "Descripcion";
         encabezado[3] = "IVA";
         encabezado[4] = "Costo";
-        encabezado[5] = "Costo Medio";
-        encabezado[6] = "Precio unitario";
-        encabezado[7] = "Precio Mayorista";
+        encabezado[5] = "C.Medio";
+        encabezado[6] = "P.Unitario";
+        encabezado[7] = "P.Mayorista";
         encabezado[8] = "Stock";
-        encabezado[9] = "Stock Minimo";
+        encabezado[9] = "S.Minimo";
         encabezado[10] = "Estado";
         encabezado[11] = "Categoria";
         encabezado[12] = "Marca";

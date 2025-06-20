@@ -12,6 +12,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.modeloMarca;
+import vista.frmMarca;
 
 
 public class abmMarca extends config.conexion{
@@ -55,12 +56,15 @@ public class abmMarca extends config.conexion{
         //ahora cargar el objeto encabezado a default
         
         DefaultTableModel modelo = new DefaultTableModel();
-       
         Object encabezado[] = new Object[3];
         encabezado[0] = "CODIGO";
         encabezado[1] = "DESCRIPCION";
         encabezado[2] = "ESTADO";
         modelo.setColumnIdentifiers(encabezado);
+        
+  
+        
+        
                
         PreparedStatement preparaConsulta = null;
         ResultSet datos = null;

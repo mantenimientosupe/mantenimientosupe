@@ -2,10 +2,17 @@
 package vista;
 
 import abm.abmProveedor;
+import config.conexion;
 import config.sesion;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.modeloProveedor;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class frmProveedor extends javax.swing.JInternalFrame {
@@ -52,6 +59,7 @@ public class frmProveedor extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        btnReporteProveedor = new javax.swing.JButton();
         panelEdicion = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -160,12 +168,21 @@ public class frmProveedor extends javax.swing.JInternalFrame {
             }
         });
 
+        btnReporteProveedor.setText("Imprimir Proveedores");
+        btnReporteProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteProveedorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(btnReporteProveedor)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,7 +200,8 @@ public class frmProveedor extends javax.swing.JInternalFrame {
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReporteProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -629,6 +647,29 @@ public class frmProveedor extends javax.swing.JInternalFrame {
         btnGuardar.requestFocus();}
     }//GEN-LAST:event_txtEstadoKeyPressed
 
+    private void btnReporteProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteProveedorActionPerformed
+        try {
+            conexion con = new conexion();
+            Connection conec = con.getAbrirConexion();
+
+            // Filtrar Marcas Activas
+            Map filtro = new HashMap();
+            filtro.put("MActivo", 1);
+
+            //Pasar la ruta del reporte
+            String ruta = "src/reportes/rptProveedores.jasper";
+            //Cargar y rellenar el reporte
+            JasperPrint reporteProveedores = JasperFillManager.fillReport(ruta, null, conec);
+
+            // Mostrar el reporte en pantalla
+            JasperViewer.viewReport(reporteProveedores, false);
+            conec.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }//GEN-LAST:event_btnReporteProveedorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
@@ -637,6 +678,7 @@ public class frmProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnReporteProveedor;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cbxOpcion;
     private javax.swing.JTabbedPane contenedor;

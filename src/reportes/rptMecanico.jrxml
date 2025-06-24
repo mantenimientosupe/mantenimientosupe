@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d7fccef4-f909-4c30-bfd5-d3c5cfd7946c">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+  mecanico.`ID_MECANICO` AS mecanico_ID_MECANICO,
+  mecanico.`NOMBRE` AS mecanico_NOMBRE,
+  mecanico.`DOCUMENTO_NRO` AS mecanico_DOCUMENTO_NRO,
+  mecanico.`TELEFONO` AS mecanico_TELEFONO,
+  mecanico.`DIRECCION` AS mecanico_DIRECCION,
+  mecanico.`ESTADO` AS mecanico_ESTADO
+FROM 
+  `mecanico` mecanico]]>
+	</queryString>
+	<field name="mecanico_ID_MECANICO" class="java.lang.Integer"/>
+	<field name="mecanico_NOMBRE" class="java.lang.String"/>
+	<field name="mecanico_DOCUMENTO_NRO" class="java.lang.String"/>
+	<field name="mecanico_TELEFONO" class="java.lang.String"/>
+	<field name="mecanico_DIRECCION" class="java.lang.String"/>
+	<field name="mecanico_ESTADO" class="java.lang.Boolean"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="fc4e1489-4557-4f86-96af-bf9cefed32e2"/>
+				<staticText>
+					<reportElement x="20" y="20" width="552" height="43" forecolor="#FFFFFF" uuid="d27dc5f2-4592-430c-ac67-22176e033df8"/>
+					<textElement textAlignment="Center">
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Lista de Mecanicos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="63" width="180" height="20" forecolor="#FFFFFF" uuid="fd4d1b05-f711-4988-bd8f-7366ced4efe6"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Mantenimientos UPE]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="d09ffff6-32de-48fd-89db-7d8c413e3e02"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="32" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="41e17acc-1bbf-4e95-84dc-1fecc653f8d5"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="32" y="0" width="152" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f62044b4-0763-41c1-b4eb-0b9d526c47ed"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="184" y="0" width="133" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ff824c1d-fd43-4776-95a0-d74192e2d435"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="317" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0da67123-3474-44de-a46c-42f720e85f8c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="409" y="0" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b2ef71e0-4134-408d-8dfe-8e4cf08e037c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="500" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="062197e7-0aec-4802-9392-5c38556033d3"/>
+				<textElement textAlignment="Center">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="258f9c0b-d470-49e8-880a-a6420b9b4588"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="32" height="20" uuid="80d91b02-8787-4c15-90cc-185ac8312df3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mecanico_ID_MECANICO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="32" y="0" width="152" height="20" uuid="83d251d6-5484-4649-b6cd-4f5ba937fcf0"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mecanico_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="184" y="0" width="132" height="20" uuid="26bb8a1a-c61b-4ff6-b971-b1c529394a90"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mecanico_DOCUMENTO_NRO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="316" y="0" width="92" height="20" uuid="f66692e3-4a6a-495b-a091-8c3db71ced0a"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mecanico_TELEFONO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="501" y="0" width="55" height="20" uuid="4d493d22-f5ed-4d42-8842-e940a3c0c5f8"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mecanico_ESTADO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="408" y="0" width="92" height="20" uuid="21f5bb13-c8fa-4618-9869-25a79597b896"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mecanico_DIRECCION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="339be436-0f1e-4b7d-af2d-58f5847e50dc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="71fa80d2-fa33-4b2b-a2b5-cf93fa5b98e4"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="665f95d3-6ae5-4d73-8091-b609fd139155"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -299,9 +299,9 @@ public class Servicios extends javax.swing.JInternalFrame {
         jLabel37 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtKmActual = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtKmProximo = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
         setBorder(null);
@@ -1106,18 +1106,18 @@ public class Servicios extends javax.swing.JInternalFrame {
         jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 116, -1));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 83, 116, 29));
+        txtKmActual.setEditable(false);
+        txtKmActual.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel2.add(txtKmActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 83, 116, 29));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 153));
         jLabel3.setText("Actual");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 63, -1, -1));
 
-        jTextField2.setEditable(false);
-        jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 148, 116, 29));
+        txtKmProximo.setEditable(false);
+        txtKmProximo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jPanel2.add(txtKmProximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 148, 116, 29));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 153));
@@ -1470,8 +1470,6 @@ public class Servicios extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     public javax.swing.JLabel lblInfoCodigo;
     private javax.swing.JLabel lblInfoCosto;
     public javax.swing.JLabel lblInfoDescripcion;
@@ -1500,6 +1498,8 @@ public class Servicios extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtIva10;
     private javax.swing.JTextField txtIva5;
+    private javax.swing.JTextField txtKmActual;
+    private javax.swing.JTextField txtKmProximo;
     public javax.swing.JTextField txtNombreCliente;
     private javax.swing.JTextField txtPrecioVenta;
     private javax.swing.JTextField txtSubtotal;
